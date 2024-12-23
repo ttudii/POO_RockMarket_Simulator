@@ -31,12 +31,22 @@ int Angajat::calculateSeniority(){
 }
 
 void Angajat::afisare(){
+    cout << endl;
+
     cout << "Functie: " << type << endl;
     cout << "Id: " << ID << endl;
     cout << "Nume: " << first_name << endl;
     cout << "Prenume: " << last_name << endl;
     cout << "CNP: " << CNP << endl;
     cout << "Data angajarii: " << hire_date << endl;
+
+    float salary = calculateSalary();
+
+    time_t now = time(0);
+
+    tm *ltm = localtime(&now);
+
+    cout << "Salariu luna " << ltm->tm_mon + 1 << ", " << ltm->tm_year + 1900 << ": " << salary << endl;
 }
 
 const string Angajat::getID(){
