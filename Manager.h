@@ -14,4 +14,3 @@ class Manager : public Angajat{
     void afisare();
     float calculateSalary();
 };
-
