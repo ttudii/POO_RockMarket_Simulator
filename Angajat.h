@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <ctime>
+#include <vector>
 #include <algorithm>
 
 using namespace std;
@@ -11,8 +12,8 @@ class Angajat{
     protected:
     string type = "";
     const string ID; //unic, asignat la angajare, nu se modifica pe perioada angajarii
-    string first_name; //min 3 caractere, max 30
-    string second_name; //min 3 caractere, max 30
+    string first_name; //prenume, min 3 caractere, max 30
+    string last_name; //nume, min 3 caractere, max 30
     const string CNP; //trebuie sa fie valid
     const string hire_date;
     // float salary = 3500; //salariu de baza
@@ -25,6 +26,7 @@ class Angajat{
     void validCNP();
     void validHireDate();
     int calculateSeniority();
-    string getType();
+    const string getID();
+    void setLastName(const string nume);
 };
 

@@ -1,7 +1,7 @@
 #include "Angajat.h"
 
 Angajat::Angajat(const string id, string prenume, string nume, const string cnp, const string data_angajare)
-:ID(id), first_name(prenume), second_name(nume), CNP(cnp), hire_date(data_angajare)
+:ID(id), first_name(prenume), last_name(nume), CNP(cnp), hire_date(data_angajare)
 {}
 
 int Angajat::calculateSeniority(){
@@ -34,12 +34,16 @@ void Angajat::afisare(){
     cout << "Functie: " << type << endl;
     cout << "Id: " << ID << endl;
     cout << "Nume: " << first_name << endl;
-    cout << "Prenume: " << second_name << endl;
+    cout << "Prenume: " << last_name << endl;
     cout << "CNP: " << CNP << endl;
     cout << "Data angajarii: " << hire_date << endl;
 }
 
-string Angajat::getType(){
-    return type;
+const string Angajat::getID(){
+    return ID;
+}
+
+void Angajat::setLastName(const string nume){
+    last_name = nume;
 }
 
