@@ -1,7 +1,10 @@
 #include "Angajat.h"
 #include "Manager.h"
+#include "Operator.h"
+#include "Asistent.h"
 
 //TODO: verify if the employee is older than 18 and younger than 70
+//TODO: solve edge case for 7 or 8 sex values
 bool validCNP(const string &CNP){
 
     int sex = stoi(CNP.substr(0,1));
@@ -93,7 +96,7 @@ bool validDate(const string date){
 }
 
 bool validType(const string type){
-    if(type != "manager" && type != "operator comenzi" && type != "asistent"){
+    if(type != "manager" && type != "operator" && type != "asistent"){
         return false;
     } else {
         return true;
@@ -114,6 +117,7 @@ void addNewEmployee(vector <Angajat*> &employees){
     while(true){
         cout << "Please introduce the ID" << endl;
         cin >> id;
+        cout << endl;
 
         if(validID(employees, (const string)id)){
             break;
@@ -125,15 +129,22 @@ void addNewEmployee(vector <Angajat*> &employees){
     while(true){
         cout<< "Please introduce the first name" << endl;
         cin >> first_name;
+        first_name[0] = toupper(first_name[0]);
+        transform(first_name.begin() + 1, first_name.end(), first_name.begin() + 1, [](char c){
+                return tolower(c);
+        });
         cout << endl;
         cout<< "Please introduce the last name" << endl; 
         cin >> last_name;
+        last_name[0] = toupper(last_name[0]);
+        transform(last_name.begin() + 1, last_name.end(), last_name.begin() + 1, [](char c){
+                return tolower(c);
+        });
         cout << endl;
         
         if(validName((const string)first_name, (const string)last_name)){
             break;
         } else {
-            //throw error or message?
             cout << "The provided first name or last name are incorrect!" << endl;
         }
     }
@@ -141,6 +152,7 @@ void addNewEmployee(vector <Angajat*> &employees){
     while(true){
         cout<< "Please introduce the CNP" << endl;
         cin >> CNP;
+        cout << endl;
 
         if(validCNP((const string)CNP)){
             break;
@@ -150,8 +162,9 @@ void addNewEmployee(vector <Angajat*> &employees){
     }
 
     while(true){
-        cout<< "Please introduce the date of employment" << endl;
+        cout << "Please introduce the date of employment" << endl;
         cin >> hire_date;
+        cout << endl;
 
         if(validDate(hire_date)){
             break;
@@ -163,6 +176,9 @@ void addNewEmployee(vector <Angajat*> &employees){
     while(true){
         cout << "Please introduce the function of the employee in the company" << endl;
         cin >> type;
+        transform(type.begin(), type.end(), type.begin(), [](char c){
+            return tolower(c);
+        })
 
         if(!validType(type)){
             cout << "This function doesn't exist in the company!" << endl;
@@ -170,11 +186,11 @@ void addNewEmployee(vector <Angajat*> &employees){
             if(type == "manager"){
                 employees.push_back(new Manager ((const string)id, first_name, last_name, (const string)CNP, (const string)hire_date));
                 break;
-            } else if(type == "operator comenzi") {
-                // employees.push_back(new OperatorComenzi (id, first_name, last_name, CNP, hire_date));
+            } else if(type == "operator") {
+                employees.push_back(new Operator ((const string)id, first_name, last_name, (const string)CNP, (const string)hire_date));
                 break;
             } else if(type == "asistent") {
-                // employees.push_back(new Asistent (id, first_name, last_name, CNP, hire_date));         
+                employees.push_back(new Asistent ((const string)id, first_name, last_name, (const string)CNP, (const string)hire_date));         
                 break;
             }
         }
@@ -184,35 +200,59 @@ void addNewEmployee(vector <Angajat*> &employees){
 void displayAllEmployees(vector <Angajat*> &employees){
     for(vector <Angajat*>::iterator it = employees.begin(); it != employees.end(); it++){
         (*it)->afisare();
+        cout << endl;
     }
 }
 
-//TODO: add OperatorComenzi and Asistent classes
-//TODO: create Menu
+//TODO: create menu
 //TODO: add modify employee and delete employee functions
-//TODO: add display salary functions for all employees
-//TODO: modify added data to a standard format (name: Aaaaa, date: DD.MM.YYYY, type: Aaaaa)
 
 int main(){
 
     vector <Angajat*> employees;
 
-    char res;
-
+    //menu
     while(true){
-        cout << "Add a new employee?(y/n)"<<endl;
-        cin >> res;
-        if(tolower(res) == 'y' || tolower(res) == 'n'){
+        string response;
+
+        while(true){
+            cout << "\nAdd a new employee?(y/n)"<<endl;
+            cin >> response;
+            cout << endl;
+
+            if(tolower(response[0]) == 'y' || tolower(response[0]) == 'n'){
+                break;
+            } else {
+                cout << "Choose a valid answer!" << endl;
+            }
+        }
+
+        if(tolower(response[0]) == 'y'){
+            addNewEmployee(employees);
+        } else {
+            break;
+        }
+
+        while(true){
+            cout << "\nExit or add new employee(exit/new)"<<endl;
+            cin >> response;
+            transform(response.begin(), response.end(), response.begin(), [](char c){
+                return tolower(c);
+            });
+            if(response == "exit" || response == "new"){
+                break;
+            } else {
+                cout << "Choose a valid answer!" << endl;
+            }
+        }
+
+        if(response == "exit"){
             break;
         } else {
-            cout << "Choose a valid answer!" << endl;
+            continue;
         }
     }
-
-    if(tolower(res) == 'y'){
-        addNewEmployee(employees);
-    }
-
+    
     displayAllEmployees(employees);
 
     return 0;

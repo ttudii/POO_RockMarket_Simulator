@@ -1,10 +1,6 @@
 #pragma once
 
-#include <iostream>
-#include <string>
 #include "Angajat.h"
-
-using namespace std;
 
 class Manager : public Angajat{
 
