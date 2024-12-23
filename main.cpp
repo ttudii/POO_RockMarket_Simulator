@@ -1,7 +1,7 @@
 #include "Angajat.h"
 #include "Manager.h"
 
-//verify if the employee is older than 18 and younger than 70
+//TODO: verify if the employee is older than 18 and younger than 70
 bool validCNP(const string &CNP){
 
     int sex = stoi(CNP.substr(0,1));
@@ -79,7 +79,7 @@ bool validName(const string &first_name, const string &second_name){
     return true;
 }
 
-bool validID(vector <Angajat*> & employees, const string &id){
+bool validID(vector <Angajat*> &employees, const string &id){
     int counter = count_if(employees.begin(), employees.end(), [&id](Angajat* i){
         return (id == i->getID());
     });
@@ -87,7 +87,7 @@ bool validID(vector <Angajat*> & employees, const string &id){
     return counter == 0;
 }
 
-//verify that the date is lower than the current localtime and higher than the date of birth
+//TODO: verify that the date is lower than the current localtime and higher than the date of birth and has proper aspect (DD.MM.YYYY)
 bool validDate(const string date){
     return true;
 }
@@ -164,38 +164,56 @@ void addNewEmployee(vector <Angajat*> &employees){
         cout << "Please introduce the function of the employee in the company" << endl;
         cin >> type;
 
-        if(validType(type)){
-            break;
-        } else {
+        if(!validType(type)){
             cout << "This function doesn't exist in the company!" << endl;
-        }
-
-        if(type == "manager"){
-            employees.push_back(new Manager ((const string)id, first_name, last_name, (const string)CNP, (const string)hire_date));
-            break;
-        } else if(type == "operator comenzi") {
-            // employees.push_back(new OperatorComenzi (id, first_name, last_name, CNP, hire_date));
-            break;
-        } else if(type == "asistent") {
-            // employees.push_back(new Asistent (id, first_name, last_name, CNP, hire_date));         
-            break;
+        } else {
+            if(type == "manager"){
+                employees.push_back(new Manager ((const string)id, first_name, last_name, (const string)CNP, (const string)hire_date));
+                break;
+            } else if(type == "operator comenzi") {
+                // employees.push_back(new OperatorComenzi (id, first_name, last_name, CNP, hire_date));
+                break;
+            } else if(type == "asistent") {
+                // employees.push_back(new Asistent (id, first_name, last_name, CNP, hire_date));         
+                break;
+            }
         }
     }
 }
+
+void displayAllEmployees(vector <Angajat*> &employees){
+    for(vector <Angajat*>::iterator it = employees.begin(); it != employees.end(); it++){
+        (*it)->afisare();
+    }
+}
+
+//TODO: add OperatorComenzi and Asistent classes
+//TODO: create Menu
+//TODO: add modify employee and delete employee functions
+//TODO: add display salary functions for all employees
+//TODO: modify added data to a standard format (name: Aaaaa, date: DD.MM.YYYY, type: Aaaaa)
 
 int main(){
 
     vector <Angajat*> employees;
 
-    // employees.push_back(new Manager ("1", "nume", "prenume", "5041208460047", "21.12.2010"));
-    // employees.push_back(new Manager ("2", "nume", "prenume", "6000713233752", "4.2.2004"));
-    // employees.push_back(new Manager ("3", "nume", "prenume", "5000713234728", "3.8.1960"));
+    char res;
 
-    addNewEmployee(employees);
-
-    for(vector <Angajat*>::iterator it = employees.begin(); it != employees.end(); it++){
-        (*it)->afisare();
+    while(true){
+        cout << "Add a new employee?(y/n)"<<endl;
+        cin >> res;
+        if(tolower(res) == 'y' || tolower(res) == 'n'){
+            break;
+        } else {
+            cout << "Choose a valid answer!" << endl;
+        }
     }
+
+    if(tolower(res) == 'y'){
+        addNewEmployee(employees);
+    }
+
+    displayAllEmployees(employees);
 
     return 0;
 }
