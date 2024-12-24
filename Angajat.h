@@ -22,6 +22,7 @@ class Angajat{
     Angajat() = default;
     Angajat(const string, string, string, const string, const string);
     virtual void afisare();
+    void displayID();
     virtual float calculateSalary() = 0;
     void validCNP();
     void validHireDate();
