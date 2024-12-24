@@ -1,188 +1,193 @@
 #include "helperFuncEmployee.h"
 
+#include "Produs.h"
+
 int main(){
 
     vector <Angajat*> employees;
+    vector <Produs*> products;
 
     //menu
-    while(true){
+    // while(true){
 
-        system("cls");
+    //     system("cls");
 
-        string response;
-        cout << "Rock Market" << endl;
-        cout << endl;
+    //     string response;
+    //     cout << "Rock Market" << endl;
+    //     cout << endl;
 
-        cout << "1. Manage employees" << endl;
-        cout << "2. Manage stock" << endl;
-        cout << "3. Process orders" << endl;
-        cout << "4. Reports" << endl;
-        cout << "5. Exit" << endl;
-        cout << endl;
+    //     cout << "1. Manage employees" << endl;
+    //     cout << "2. Manage stock" << endl;
+    //     cout << "3. Process orders" << endl;
+    //     cout << "4. Reports" << endl;
+    //     cout << "5. Exit" << endl;
+    //     cout << endl;
 
-        cout << "Select option: " << endl;
-        while(true){
-            cin >> response;
-            cout << endl;
+    //     cout << "Select option: " << endl;
+    //     while(true){
+    //         cin >> response;
+    //         cout << endl;
 
-            if(response[0] != '1' && response[0] != '2' && response[0] != '3' && response[0] != '4' && response[0] != '5') {
-                cout << "The option selected doesn't exist in the menu!" << endl;
-            } else if(response[0] == '5'){
-                return 0;
-            } else {
-                system("cls");
-                break;
-            }
+    //         if(response[0] != '1' && response[0] != '2' && response[0] != '3' && response[0] != '4' && response[0] != '5') {
+    //             cout << "The option selected doesn't exist in the menu!" << endl;
+    //         } else if(response[0] == '5'){
+    //             return 0;
+    //         } else {
+    //             system("cls");
+    //             break;
+    //         }
 
-        }
+    //     }
         
-        if (response[0] == '1'){
-            while(true){
+    //     if (response[0] == '1'){
+    //         while(true){
 
-                system("cls");
+    //             system("cls");
 
-                cout << "Manage employees" << endl;
-                cout << endl;
+    //             cout << "Manage employees" << endl;
+    //             cout << endl;
 
-                cout << "1. Add employee" << endl;
-                cout << "2. Modify employee" << endl;
-                cout << "3. Remove employee" << endl;
-                cout << "4. Display employees" << endl;
-                cout << "5. Back" << endl;
-                cout << endl;
+    //             cout << "1. Add employee" << endl;
+    //             cout << "2. Modify employee" << endl;
+    //             cout << "3. Remove employee" << endl;
+    //             cout << "4. Display employees" << endl;
+    //             cout << "5. Back" << endl;
+    //             cout << endl;
 
-                cout << "Select option: " << endl;
-                while(true){
-                    cin >> response;
-                    cout << endl;
+    //             cout << "Select option: " << endl;
+    //             while(true){
+    //                 cin >> response;
+    //                 cout << endl;
 
-                    if(response[0] != '1' && response[0] != '2' && response[0] != '3' && response[0] != '4' && response[0] != '5') {
-                        cout << "The option selected doesn't exist in the menu!" << endl;
-                    } else {
-                        break;
-                    }
-                }
+    //                 if(response[0] != '1' && response[0] != '2' && response[0] != '3' && response[0] != '4' && response[0] != '5') {
+    //                     cout << "The option selected doesn't exist in the menu!" << endl;
+    //                 } else {
+    //                     break;
+    //                 }
+    //             }
 
-                if(response[0] == '1'){
-                    system("cls");
-                    while(true){
+    //             if(response[0] == '1'){
+    //                 system("cls");
+    //                 while(true){
 
-                        addNewEmployee(employees);
+    //                     addNewEmployee(employees);
 
-                        while(true){
-                            cout << "\nExit or add new employee(exit/new)"<<endl;
-                            cin >> response;
-                            cout << endl;
-                            transform(response.begin(), response.end(), response.begin(), [](char c){
-                                return tolower(c);
-                            });
-                            if(response == "exit" || response == "new"){
-                                break;
-                            } else {
-                                cout << "Choose a valid answer!" << endl;
-                            }
-                        }
+    //                     while(true){
+    //                         cout << "\nExit or add new employee(exit/new)"<<endl;
+    //                         cin >> response;
+    //                         cout << endl;
+    //                         transform(response.begin(), response.end(), response.begin(), [](char c){
+    //                             return tolower(c);
+    //                         });
+    //                         if(response == "exit" || response == "new"){
+    //                             break;
+    //                         } else {
+    //                             cout << "Choose a valid answer!" << endl;
+    //                         }
+    //                     }
 
-                        if(response == "exit"){
-                            system("cls");
-                            break;
-                        } else {
-                            continue;
-                        }
-                    }
-                } else if(response[0] == '2') {
-                    system("cls");
-                    if(employees.size() != 0){
-                        while(true){
-                            modifyEmployee(employees);
+    //                     if(response == "exit"){
+    //                         system("cls");
+    //                         break;
+    //                     } else {
+    //                         continue;
+    //                     }
+    //                 }
+    //             } else if(response[0] == '2') {
+    //                 system("cls");
+    //                 if(employees.size() != 0){
+    //                     while(true){
+    //                         modifyEmployee(employees);
 
-                            while(true){
-                                cout << "\nExit or modify another employee(exit/modify)"<<endl;
-                                cin >> response;
-                                cout << endl;
-                                transform(response.begin(), response.end(), response.begin(), [](char c){
-                                    return tolower(c);
-                                });
-                                if(response == "exit" || response == "modify"){
-                                    break;
-                                } else {
-                                    cout << "Choose a valid answer!" << endl;
-                                }
-                            }
+    //                         while(true){
+    //                             cout << "\nExit or modify another employee(exit/modify)"<<endl;
+    //                             cin >> response;
+    //                             cout << endl;
+    //                             transform(response.begin(), response.end(), response.begin(), [](char c){
+    //                                 return tolower(c);
+    //                             });
+    //                             if(response == "exit" || response == "modify"){
+    //                                 break;
+    //                             } else {
+    //                                 cout << "Choose a valid answer!" << endl;
+    //                             }
+    //                         }
 
-                            if(response == "exit"){
-                                system("cls");
-                                break;
-                            } else {
-                                continue;
-                            }
-                        }
-                    } else {
-                        cout << "You cannot modify any employee because the company is empty!" << endl;
-                        std::this_thread::sleep_for(std::chrono::seconds(4));
-                    }
-                } else if(response[0] == '3') {
-                    system("cls");
-                    if(employees.size() != 0){
-                        while(true){
-                            deleteEmployee(employees);
+    //                         if(response == "exit"){
+    //                             system("cls");
+    //                             break;
+    //                         } else {
+    //                             continue;
+    //                         }
+    //                     }
+    //                 } else {
+    //                     cout << "You cannot modify any employee because the company is empty!" << endl;
+    //                     std::this_thread::sleep_for(std::chrono::seconds(4));
+    //                 }
+    //             } else if(response[0] == '3') {
+    //                 system("cls");
+    //                 if(employees.size() != 0){
+    //                     while(true){
+    //                         deleteEmployee(employees);
 
-                            while(true){
-                                cout << "\nExit or delete another employee(exit/delete)"<<endl;
-                                cin >> response;
-                                cout << endl;
-                                transform(response.begin(), response.end(), response.begin(), [](char c){
-                                    return tolower(c);
-                                });
-                                if(response == "exit" || response == "delete"){
-                                    break;
-                                } else {
-                                    cout << "Choose a valid answer!" << endl;
-                                }
-                            }
+    //                         while(true){
+    //                             cout << "\nExit or delete another employee(exit/delete)"<<endl;
+    //                             cin >> response;
+    //                             cout << endl;
+    //                             transform(response.begin(), response.end(), response.begin(), [](char c){
+    //                                 return tolower(c);
+    //                             });
+    //                             if(response == "exit" || response == "delete"){
+    //                                 break;
+    //                             } else {
+    //                                 cout << "Choose a valid answer!" << endl;
+    //                             }
+    //                         }
 
-                            if(response == "exit"){
-                                system("cls");
-                                break;
-                            } else {
-                                if(employees.size() == 0){
-                                    goto exit_delete;
-                                } else{
-                                    continue;
-                                }
-                            }
-                        }
-                    } else {
-                        exit_delete:
-                        cout << "You cannot remove any employee because the company is empty!" << endl;
-                        std::this_thread::sleep_for(std::chrono::seconds(4));
-                    }
-                } else if(response[0] == '4') {
-                    system("cls");
-                    if(employees.size() != 0){
-                        displayAllEmployees(employees);
-                        cout << "Press ENTER to return to the menu...";
-                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                        std::cin.get();
-                    } else {
-                        cout << "No employees to display because the company is empty!" << endl;
-                        std::this_thread::sleep_for(std::chrono::seconds(4));
-                    }
-                } else {
-                    system("cls");
-                    break;
-                }
-            }
-        } else if(response[0] == '2') {
-            return 0;
-        } else if(response[0] == '3') {
-            return 0;
-        } else {
-            return 0;
-        }
-    }
+    //                         if(response == "exit"){
+    //                             system("cls");
+    //                             break;
+    //                         } else {
+    //                             if(employees.size() == 0){
+    //                                 goto exit_delete;
+    //                             } else{
+    //                                 continue;
+    //                             }
+    //                         }
+    //                     }
+    //                 } else {
+    //                     exit_delete:
+    //                     cout << "You cannot remove any employee because the company is empty!" << endl;
+    //                     std::this_thread::sleep_for(std::chrono::seconds(4));
+    //                 }
+    //             } else if(response[0] == '4') {
+    //                 system("cls");
+    //                 if(employees.size() != 0){
+    //                     displayAllEmployees(employees);
+    //                     cout << "Press ENTER to return to the menu...";
+    //                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    //                     std::cin.get();
+    //                 } else {
+    //                     cout << "No employees to display because the company is empty!" << endl;
+    //                     std::this_thread::sleep_for(std::chrono::seconds(4));
+    //                 }
+    //             } else {
+    //                 system("cls");
+    //                 break;
+    //             }
+    //         }
+    //     } else if(response[0] == '2') {
+    //         return 0;
+    //     } else if(response[0] == '3') {
+    //         return 0;
+    //     } else {
+    //         return 0;
+    //     }
+    // }
 
-    displayAllEmployees(employees);
+    products.push_back(new Produs ("cacamaca", "geaca", 20));
+    vector<Produs*>::iterator it = products.begin();
+    (*it)->afisare();
 
     return 0;
 }
