@@ -35,8 +35,8 @@ void Angajat::afisare(){
 
     cout << "Functie: " << type << endl;
     cout << "Id: " << ID << endl;
-    cout << "Nume: " << first_name << endl;
-    cout << "Prenume: " << last_name << endl;
+    cout << "Prenume: " << first_name << endl;
+    cout << "Nume: " << last_name << endl;
     cout << "CNP: " << CNP << endl;
     cout << "Data angajarii: " << hire_date << endl;
 
@@ -47,6 +47,13 @@ void Angajat::afisare(){
     tm *ltm = localtime(&now);
 
     cout << "Salariu luna " << ltm->tm_mon + 1 << ", " << ltm->tm_year + 1900 << ": " << salary << endl;
+}
+
+void Angajat::displayID(){
+
+    cout << "Id:" << ID << " ";
+    cout << "Prenume:" << first_name << " ";
+    cout << "Nume:" << last_name << endl;
 }
 
 const string Angajat::getID(){
