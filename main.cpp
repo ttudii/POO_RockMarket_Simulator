@@ -1,8 +1,19 @@
 #include "helperFuncEmployee.h"
 
+#include "Produs.h"
+#include "Vestimentatie.h"
+#include "Disc.h"
+#include "Vinil.h"
+//TODO: add new product, modify product, remove product, display all products;
+
+void addNewProduct(vector <Produs*> products){
+    
+}
+
 int main(){
 
     vector <Angajat*> employees;
+    vector <Produs*> products;
 
     //menu
     while(true){
@@ -174,15 +185,145 @@ int main(){
                 }
             }
         } else if(response[0] == '2') {
-            return 0;
+            while(true){
+                system("cls");
+
+                cout << "Manage products" << endl;
+                cout << endl;
+
+                cout << "1. Add product" << endl;
+                cout << "2. Modify product" << endl;
+                cout << "3. Remove product" << endl;
+                cout << "4. Display products" << endl;
+                cout << "5. Back" << endl;
+                cout << endl;
+
+                cout << "Select option: " << endl;
+                while(true){
+                    cin >> response;
+                    cout << endl;
+
+                    if(response[0] != '1' && response[0] != '2' && response[0] != '3' && response[0] != '4' && response[0] != '5') {
+                        cout << "The option selected doesn't exist in the menu!" << endl;
+                    } else {
+                        break;
+                    }
+                }
+
+                if(response[0] == '1'){
+                    system("cls");
+                    while(true){
+                        addNewProduct(products);
+
+                        while(true){
+                            cout << "\nExit or add new product(exit/new)"<<endl;
+                            cin >> response;
+                            cout << endl;
+                            transform(response.begin(), response.end(), response.begin(), [](char c){
+                                return tolower(c);
+                            });
+                            if(response == "exit" || response == "new"){
+                                break;
+                            } else {
+                                cout << "Choose a valid answer!" << endl;
+                            }
+                        }
+
+                        if(response == "exit"){
+                            system("cls");
+                            break;
+                        } else {
+                                continue;
+                        }
+                    }
+                } else if(response[0] == '2') {
+                    system("cls");
+                    if(employees.size() != 0){
+                        while(true){
+                            modifyProduct(products);
+
+                            while(true){
+                                cout << "\nExit or modify another product(exit/modify)"<<endl;
+                                cin >> response;
+                                cout << endl;
+                                transform(response.begin(), response.end(), response.begin(), [](char c){
+                                    return tolower(c);
+                                });
+                                if(response == "exit" || response == "modify"){
+                                    break;
+                                } else {
+                                    cout << "Choose a valid answer!" << endl;
+                                }
+                            }
+
+                            if(response == "exit"){
+                                system("cls");
+                                break;
+                            } else {
+                                continue;
+                            }
+                        }
+                    } else {
+                        cout << "You cannot modify any product stock because the list is empty!" << endl;
+                        std::this_thread::sleep_for(std::chrono::seconds(4));
+                    }
+                } else if(response[0] == '3') {
+                    system("cls");
+                    if(employees.size() != 0){
+                        while(true){
+                            deleteProduct(products);
+
+                            while(true){
+                                cout << "\nExit or delete another product(exit/delete)"<<endl;
+                                cin >> response;
+                                cout << endl;
+                                transform(response.begin(), response.end(), response.begin(), [](char c){
+                                    return tolower(c);
+                                });
+                                if(response == "exit" || response == "delete"){
+                                    break;
+                                } else {
+                                    cout << "Choose a valid answer!" << endl;
+                                }
+                            }
+
+                            if(response == "exit"){
+                                system("cls");
+                                break;
+                            } else {
+                                if(employees.size() == 0){
+                                    goto exit_delete;
+                                } else{
+                                    continue;
+                                }
+                            }
+                        }
+                    } else {
+                        exit_delete:
+                        cout << "You cannot remove any product because the list is empty!" << endl;
+                        std::this_thread::sleep_for(std::chrono::seconds(4));
+                    }
+                } else if(response[0] == '4') {
+                    system("cls");
+                    if(employees.size() != 0){
+                        displayAllProducts(products);
+                        cout << "Press ENTER to return to the menu...";
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        std::cin.get();
+                    } else {
+                        cout << "No products to display because the company is empty!" << endl;
+                        std::this_thread::sleep_for(std::chrono::seconds(4));
+                    }
+                } else {
+                    system("cls");
+                    break;
+                }
+            }
         } else if(response[0] == '3') {
             return 0;
         } else {
-            return 0;
+        return 0;
         }
     }
-
-    displayAllEmployees(employees);
-
     return 0;
 }
