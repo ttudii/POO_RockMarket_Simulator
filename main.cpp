@@ -4,6 +4,8 @@
 //TODO: add possibility to display only one employee/product
 //TODO: add message that the team is incomplete
 //TODO: add message that the list of products is incomplete
+//TODO: add to the salary of the operator 0.5% of the total sales
+//TODO: decide on the min year on validDate
 
 int main(){
 
