@@ -14,6 +14,6 @@ void Produs::afisare(){
     cout << "Tip: " << type << endl;
     cout << "Cod: " << code << endl;
     cout << "Denumire: " << name << endl;
-    cout << "Pret de baza" << base_price << endl;
     cout << "Produse de acelasi tip in stoc: " << stock << endl;
+    cout << "Pret: " << base_price << " RON" << endl;
 }
