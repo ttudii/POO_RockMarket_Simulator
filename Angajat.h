@@ -28,6 +28,7 @@ class Angajat{
     void validHireDate();
     int calculateSeniority();
     const string getID();
+    string getName();
     void setLastName(const string nume);
 };
 

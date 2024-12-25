@@ -9,7 +9,7 @@ class Vestimentatie: public Produs{
     public:
     
     Vestimentatie() = default;
-    Vestimentatie(const string, string, float, string, string);
+    Vestimentatie(const string, string, int, float, string, string);
     void afisare();
-    void addShipmentTaxes();
-}
+    float addShipmentTaxes();
+};

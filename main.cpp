@@ -1,14 +1,9 @@
 #include "helperFuncEmployee.h"
+#include "helperFuncProduct.h"
 
-#include "Produs.h"
-#include "Vestimentatie.h"
-#include "Disc.h"
-#include "Vinil.h"
-//TODO: add new product, modify product, remove product, display all products;
-
-void addNewProduct(vector <Produs*> products){
-    
-}
+//TODO: add possibility to display only one employee/product
+//TODO: add message that the team is incomplete
+//TODO: add message that the list of products is incomplete
 
 int main(){
 
@@ -129,7 +124,7 @@ int main(){
                             }
                         }
                     } else {
-                        cout << "You cannot modify any employee because the company is empty!" << endl;
+                        cout << "You cannot modify any employee because the store is empty!" << endl;
                         std::this_thread::sleep_for(std::chrono::seconds(4));
                     }
                 } else if(response[0] == '3') {
@@ -157,15 +152,15 @@ int main(){
                                 break;
                             } else {
                                 if(employees.size() == 0){
-                                    goto exit_delete;
+                                    goto employee_delete;
                                 } else{
                                     continue;
                                 }
                             }
                         }
                     } else {
-                        exit_delete:
-                        cout << "You cannot remove any employee because the company is empty!" << endl;
+                        employee_delete:
+                        cout << "You cannot remove any employee because the store is empty!" << endl;
                         std::this_thread::sleep_for(std::chrono::seconds(4));
                     }
                 } else if(response[0] == '4') {
@@ -176,7 +171,7 @@ int main(){
                         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                         std::cin.get();
                     } else {
-                        cout << "No employees to display because the company is empty!" << endl;
+                        cout << "No employees to display because the store is empty!" << endl;
                         std::this_thread::sleep_for(std::chrono::seconds(4));
                     }
                 } else {
@@ -238,7 +233,7 @@ int main(){
                     }
                 } else if(response[0] == '2') {
                     system("cls");
-                    if(employees.size() != 0){
+                    if(products.size() != 0){
                         while(true){
                             modifyProduct(products);
 
@@ -264,12 +259,12 @@ int main(){
                             }
                         }
                     } else {
-                        cout << "You cannot modify any product stock because the list is empty!" << endl;
+                        cout << "You cannot modify any product because the list is empty!" << endl;
                         std::this_thread::sleep_for(std::chrono::seconds(4));
                     }
                 } else if(response[0] == '3') {
                     system("cls");
-                    if(employees.size() != 0){
+                    if(products.size() != 0){
                         while(true){
                             deleteProduct(products);
 
@@ -292,26 +287,26 @@ int main(){
                                 break;
                             } else {
                                 if(employees.size() == 0){
-                                    goto exit_delete;
+                                    goto product_delete;
                                 } else{
                                     continue;
                                 }
                             }
                         }
                     } else {
-                        exit_delete:
+                        product_delete:
                         cout << "You cannot remove any product because the list is empty!" << endl;
                         std::this_thread::sleep_for(std::chrono::seconds(4));
                     }
                 } else if(response[0] == '4') {
                     system("cls");
-                    if(employees.size() != 0){
+                    if(products.size() != 0){
                         displayAllProducts(products);
                         cout << "Press ENTER to return to the menu...";
                         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                         std::cin.get();
                     } else {
-                        cout << "No products to display because the company is empty!" << endl;
+                        cout << "No products to display because the list of products is empty!" << endl;
                         std::this_thread::sleep_for(std::chrono::seconds(4));
                     }
                 } else {

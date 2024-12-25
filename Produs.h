@@ -13,13 +13,17 @@ class Produs{
     string type = "";
     const string code; //unic, asignat la angajare, nu se modifica pe perioada angajarii
     string name;
-    static int stock; //trebuie sa fie valid
-    float base_price;
+    int stock; //trebuie sa fie valid
+    float base_price = 0;
 
     public:
     Produs() = default;
-    Produs(const string, string, float);
+    Produs(const string, string, int, float);
     virtual void afisare();
-    virtual void addShipmentTaxes() = 0;
+    virtual float addShipmentTaxes() = 0;
+    const string getCode();
+    void displayCode();
+    void setStock(int);
+    int getStock();
 };
 

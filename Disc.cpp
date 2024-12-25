@@ -1,14 +1,13 @@
 #include "Disc.h"
 
-Disc::Disc(string tip, const string cod, string denumire, float pret, const string casa_discuri, const string data, const string trupa, const string album)
-:Produs(cod, denumire, pret), record_label(casa_discuri), date(data), band(trupa), album(album)
+Disc::Disc(string tip, const string cod, string denumire, int stoc, float pret, const string casa_discuri, const string data, const string trupa, const string album)
+:Produs(cod, denumire, stoc, pret), record_label(casa_discuri), date(data), band(trupa), album(album)
 {
     type = tip;
-    addShipmentTaxes();
 }
 
-void Disc::addShipmentTaxes(){
-    base_price += 5;
+float Disc::addShipmentTaxes(){
+    return base_price + 5;
 }
 
 void Disc::afisare(){

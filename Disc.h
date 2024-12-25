@@ -11,7 +11,7 @@ class Disc: public Produs{
     
     public:
     Disc() = default;
-    Disc(string, const string, string, float,const string,const string, const string, const string);
+    Disc(string, const string, string, int, float,const string,const string, const string, const string);
     void afisare();
-    void addShipmentTaxes();
-}
+    float addShipmentTaxes();
+};
