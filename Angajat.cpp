@@ -60,6 +60,10 @@ const string Angajat::getID(){
     return ID;
 }
 
+string Angajat::getName(){
+    return last_name;
+}
+
 void Angajat::setLastName(const string nume){
     last_name = nume;
 }

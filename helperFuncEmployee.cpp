@@ -96,7 +96,7 @@ bool isLeapYear(int year) {
 }
 
 bool validDate(int day, int month, int year) {
-    if (year < 1) return false; 
+    if (year < 1900) return false; 
     if (month < 1 || month > 12) return false;
 
     int daysInMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -283,8 +283,6 @@ void displayAllEmployees(vector <Angajat*> &employees){
     }
 }
 
-//TODO: add message that the team is incomplete
-
 void modifyEmployee(vector <Angajat*> &employees){
 
     string new_name;
@@ -314,17 +312,20 @@ void modifyEmployee(vector <Angajat*> &employees){
             transform(new_name.begin() + 1, new_name.end(), new_name.begin() + 1, [](char c){
                     return tolower(c);
             });
+            vector <Angajat*>::iterator it;
+            for (it = employees.begin(); (*it)->getID() != search_id; it++)
+                ;
+            if((*it)->getName() == new_name){
+                cout << "The name provided is the same as the current name!" << endl;
+                continue;
+            }
+            (*it)->setLastName((const string)new_name);
             cout << "Employee name modified!" << endl;
             break;
         } else {
             cout << "The name provided is incorrect!" << endl;
         }
     }
-
-    vector <Angajat*>::iterator it;
-    for (it = employees.begin(); (*it)->getID() != search_id; it++)
-        ;
-    (*it)->setLastName((const string)new_name);
 }
 
 void deleteEmployee(vector <Angajat*> &employees){
@@ -335,6 +336,11 @@ void deleteEmployee(vector <Angajat*> &employees){
         cin >> search_id;
 
         if(!validID(employees, (const string)search_id)){
+            vector <Angajat*>::iterator it;
+            for (it = employees.begin(); (*it)->getID() != search_id; it++)
+                ;
+            employees.erase(it);
+            cout << "Employee deleted!" << endl;
             break;
         } else {
             cout << "The provided ID doesn't exist in the company!" << endl;
@@ -342,10 +348,4 @@ void deleteEmployee(vector <Angajat*> &employees){
             displayIDs(employees);
         }
     }
-
-    vector <Angajat*>::iterator it;
-    for (it = employees.begin(); (*it)->getID() != search_id; it++)
-        ;
-    employees.erase(it);
-    cout << "Employee deleted!" << endl;
 }
