@@ -1,5 +1,8 @@
 #include "Comanda.h"
 
+//TODO: date validation and correct initialization
+//TODO: constructor with parameters
+
 int Comanda::numOrders = 0;
 
 Comanda::Comanda(const Comanda& order){
