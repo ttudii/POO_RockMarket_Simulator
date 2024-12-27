@@ -9,15 +9,14 @@ class Comanda{
     vector <Request> requests;
     string id;
     time_t date;
-    float value;
+    float value = 0;
     int packing_time;
     bool isProcessed = false;
 
     public:
     Comanda() = default;
-    Comanda(const Comanda&);
+    Comanda(int, vector <Request>, float, int);
     void afisare();
-    void setFields();
     friend istream& operator>>(istream&, Comanda&);
 
 };

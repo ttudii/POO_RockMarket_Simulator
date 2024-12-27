@@ -2,14 +2,12 @@
 
 int Comanda::numOrders = 0;
 
-Comanda::Comanda(const Comanda& order){
-    id = order.id;
-    date = order.date;
-    value = order.value;
-    requests = order.requests;
-    packing_time = order.packing_time;
-    isProcessed = order.isProcessed;
-}
+Comanda::Comanda(int nbRequests, vector <Request> cereri, float valoare, int timp_impachetare)
+:numRequests(nbRequests), requests(cereri), value(valoare), packing_time(timp_impachetare){
+    id = "Order" + to_string(numOrders);
+    numOrders++;
+    time(&date);
+}	
 
 void Comanda::afisare(){
 
@@ -18,24 +16,12 @@ void Comanda::afisare(){
     cout << "Order ID: " << id << endl;
     cout << "Order date: " << ctime(&date);
     cout << "Order value: " << value << endl;
-    cout << "Order requests: " << numRequests << endl;
-    for(auto i : requests){
-        cout << "Code: " << i.getCode() << " Quantity: " << i.getQuantity() << endl;
+    cout << "Number of requests: " << numRequests << endl;
+    cout << "Order requests: " << endl;
+    for(vector <Request>::iterator it = requests.begin(); it != requests.end(); it++){
+        cout << "Code: " << (*it).getCode() << " Quantity: " << (*it).getQuantity() << endl;
     }
     cout << "Packing time: " << packing_time << endl;
-    cout << "Is processed: " << boolalpha << isProcessed << endl;
-}
-
-void Comanda::setFields(){
-    id = "Order" + to_string(numOrders);
-    numOrders++;
-    time(&date);
-    value = 0;
-    for(auto i : requests){
-        value += i.getQuantity();
-    }
-    packing_time = requests.size() * 2;
-    isProcessed = false;
 }
 
 istream &operator>>(istream &in, Comanda &order){
@@ -45,7 +31,6 @@ istream &operator>>(istream &in, Comanda &order){
     for (int i = 0; i < order.numRequests; ++i) {
         Request req;
         in >> req;
-        order.requests.push_back(req);
     }
 
     return in;

@@ -243,7 +243,7 @@ void addNewProduct(vector <Produs*> &products){
             }
         }
         if(CDtype == "cd" || CDtype == "vinil"){
-            products.push_back(new Disc(type, (const string)code, name, stock, base_price, (const string)record_label, (const string)date, (const string)band, (const string)album));
+            products.push_back(new Disc(CDtype, (const string)code, name, stock, base_price, (const string)record_label, (const string)date, (const string)band, (const string)album));
         } else {
             string mint;
             bool mint_bool;
