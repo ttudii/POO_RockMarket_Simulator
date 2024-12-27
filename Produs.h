@@ -25,5 +25,7 @@ class Produs{
     void displayCode();
     void setStock(int);
     int getStock();
+    int getBasePrice();
+    string getType();
 };
 

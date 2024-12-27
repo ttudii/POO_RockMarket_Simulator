@@ -36,3 +36,11 @@ int Produs::getStock(){
 void Produs::setStock(int new_stock){
     stock = new_stock;
 }
+
+int Produs::getBasePrice(){
+    return base_price;
+}
+
+string Produs::getType(){
+    return type;
+}
