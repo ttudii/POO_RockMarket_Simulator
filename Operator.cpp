@@ -19,9 +19,27 @@ float Operator::calculateSalary(){
 Operator::Operator(const string id, string prenume, string nume, const string cnp, const string data_angajare)
 :Angajat(id, prenume, nume, cnp, data_angajare)
 {
+    numOrders = 0;
     type = "operator";
 }
 
 void Operator::afisare(){
     Angajat::afisare();
+}
+
+void Operator::addOrder(Comanda order){
+    numOrders++;
+    orders.push_back(order);
+}
+
+void Operator::removeOrder(){
+    orders.pop_back();
+}
+
+vector <Comanda>& Operator::getOrders(){
+    return orders;
+}
+
+int Operator::getNumOrders(){
+    return numOrders;
 }

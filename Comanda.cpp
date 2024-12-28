@@ -2,7 +2,7 @@
 
 int Comanda::numOrders = 0;
 
-Comanda::Comanda(int nbRequests, vector <Request> cereri, float valoare, int timp_impachetare)
+Comanda::Comanda(int nbRequests, vector <Request> cereri, float valoare, float timp_impachetare)
 :numRequests(nbRequests), requests(cereri), value(valoare), packing_time(timp_impachetare){
     id = "Order" + to_string(numOrders);
     numOrders++;
@@ -22,6 +22,26 @@ void Comanda::afisare(){
         cout << "Code: " << (*it).getCode() << " Quantity: " << (*it).getQuantity() << endl;
     }
     cout << "Packing time: " << packing_time << endl;
+}
+
+float Comanda::getPackingTime(){
+    return packing_time;
+}
+
+string Comanda::getID(){
+    return id;
+}
+
+float Comanda::getTimeSimulator(){
+    return timeSimulator;
+}
+
+void Comanda::resetNumOrders(){
+    numOrders = 0;
+}
+
+void Comanda::setTimeSimulator(){
+    timeSimulator += 0.1;
 }
 
 istream &operator>>(istream &in, Comanda &order){

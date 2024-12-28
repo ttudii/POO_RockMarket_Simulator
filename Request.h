@@ -18,4 +18,5 @@ class Request {
     string getCode();
     int getQuantity();
     friend istream& operator>>(istream&, Request&);
+    friend ostream& operator<<(ostream &, vector <Request>);
 };

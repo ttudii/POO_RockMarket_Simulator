@@ -64,6 +64,10 @@ string Angajat::getName(){
     return last_name;
 }
 
+string Angajat::getType(){
+    return type;
+}
+
 void Angajat::setLastName(const string nume){
     last_name = nume;
 }
