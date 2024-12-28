@@ -18,3 +18,14 @@ istream &operator>>(istream &in, Request &request){
 
     return in;
 }
+
+ostream &operator<<(ostream &out, vector <Request> requests){
+
+    out << endl;
+    out << requests.size() << endl;
+    for(vector <Request>::iterator it = requests.begin(); it != requests.end(); it++){
+        out << (*it).code << " " << (*it).quantity << endl;
+    }
+
+    return out;
+}

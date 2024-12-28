@@ -10,13 +10,19 @@ class Comanda{
     string id;
     time_t date;
     float value = 0;
-    int packing_time;
+    float packing_time;
     bool isProcessed = false;
+    float timeSimulator = 0;
 
     public:
     Comanda() = default;
-    Comanda(int, vector <Request>, float, int);
+    Comanda(int, vector <Request>, float, float);
     void afisare();
+    float getPackingTime();
+    string getID();
+    static void resetNumOrders();
+    void setTimeSimulator();
+    float getTimeSimulator();
     friend istream& operator>>(istream&, Comanda&);
 
 };
