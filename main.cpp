@@ -7,7 +7,7 @@
 //TODO: add message that the team is incomplete
 //TODO: add message that the list of products is incomplete
 //TODO: add to the salary of the operator 0.5% of the total sales
-//TODO: reset stock after reading from file and reset numOrders of operators
+//TODO: reset stock after reading from file (optional) and reset numOrders of operators!
 
 bool validRequest(vector <Produs*> products, const string &code, int quantity){
     for(vector <Produs*>::iterator it = products.begin(); it != products.end(); it++){
