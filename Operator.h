@@ -14,6 +14,8 @@ class Operator : public Angajat{
     void afisare();
     float calculateSalary();
     void addOrder(Comanda order);
+    void resetNumOrders();
+    void displayNumOrders();
     void removeOrder();
     vector <Comanda>& getOrders();
     int getNumOrders();

@@ -7,7 +7,7 @@
 //TODO: add message that the team is incomplete
 //TODO: add message that the list of products is incomplete
 //TODO: add to the salary of the operator 0.5% of the total sales
-//TODO: reset stock after reading from file and reset numOrders of operators
+//TODO: reset stock after reading from file (optional) and reset numOrders of operators!
 
 bool validRequest(vector <Produs*> products, const string &code, int quantity){
     for(vector <Produs*>::iterator it = products.begin(); it != products.end(); it++){
@@ -83,6 +83,14 @@ void removeExpiredOrders(vector<Angajat*> &employees) {
             });
 
             orders.erase(new_end, orders.end());
+        }
+    }
+}
+
+void displayAllOrdersOp(vector <Angajat*> &employees){
+    for(vector <Angajat*>::iterator it = employees.begin(); it != employees.end(); it++){
+        if((*it)->getType() == "operator"){
+            ((Operator*)(*it))->displayNumOrders();
         }
     }
 }
@@ -557,6 +565,7 @@ int main(){
                     for(vector <Angajat*>::iterator it = employees.begin(); it != employees.end(); it++){
                         if((*it)->getType() == "operator"){
                             ((Operator*)(*it))->getOrders().clear();
+                            ((Operator*)(*it))->resetNumOrders();
                         }
                     }
                     ifstream file("orders.txt");
@@ -590,7 +599,8 @@ int main(){
                 }else if(response[0] == '3'){
                     system("cls");
                         if(orders.size() != 0){
-                            displayAllOrders(orders);
+                            // displayAllOrders(orders);
+                            displayAllOrdersOp(employees);
                             cout << "\nPress ENTER to return to the menu...";
                             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                             std::cin.get();
