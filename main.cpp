@@ -87,6 +87,14 @@ void removeExpiredOrders(vector<Angajat*> &employees) {
     }
 }
 
+void displayAllOrdersOp(vector <Angajat*> &employees){
+    for(vector <Angajat*>::iterator it = employees.begin(); it != employees.end(); it++){
+        if((*it)->getType() == "operator"){
+            ((Operator*)(*it))->displayNumOrders();
+        }
+    }
+}
+
 void processFileOrder(vector <Angajat*> &employees, vector <Produs*> &products, vector <Comanda> &orders, ifstream &file){
 
     vector <Comanda> waitList;
@@ -557,6 +565,7 @@ int main(){
                     for(vector <Angajat*>::iterator it = employees.begin(); it != employees.end(); it++){
                         if((*it)->getType() == "operator"){
                             ((Operator*)(*it))->getOrders().clear();
+                            ((Operator*)(*it))->resetNumOrders();
                         }
                     }
                     ifstream file("orders.txt");
@@ -590,7 +599,8 @@ int main(){
                 }else if(response[0] == '3'){
                     system("cls");
                         if(orders.size() != 0){
-                            displayAllOrders(orders);
+                            // displayAllOrders(orders);
+                            displayAllOrdersOp(employees);
                             cout << "\nPress ENTER to return to the menu...";
                             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                             std::cin.get();

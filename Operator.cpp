@@ -32,6 +32,17 @@ void Operator::addOrder(Comanda order){
     orders.push_back(order);
 }
 
+void Operator::resetNumOrders(){
+    numOrders = 0;
+}
+
+void Operator::displayNumOrders(){
+    cout << "Operatorul ";
+    Angajat::displayID();
+    cout << "a procesat " << numOrders << " comenzi" << endl;
+}
+
+
 void Operator::removeOrder(){
     orders.pop_back();
 }
