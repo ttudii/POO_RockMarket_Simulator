@@ -349,3 +349,24 @@ void deleteEmployee(vector <Angajat*> &employees){
         }
     }
 }
+
+bool countEmployees(vector <Angajat*> &employees){
+
+    int numManagers = count_if(employees.begin(), employees.end(), [](Angajat* i){
+        return i->getType() == "manager";
+    });
+
+    int numOperators = count_if(employees.begin(), employees.end(), [](Angajat* i){
+        return i->getType() == "operator";
+    });
+
+    int numAsistents = count_if(employees.begin(), employees.end(), [](Angajat* i){
+        return i->getType() == "asistent";
+    });
+
+    if(numManagers == 0 || numOperators < 3 || numAsistents == 0){
+        return false;
+    } else {
+        return true;
+    }
+}

@@ -340,3 +340,27 @@ void deleteProduct(vector <Produs*> &products){
         }
     }
 }
+
+bool countProducts(vector <Produs*> &products){
+    int numCD = count_if(products.begin(), products.end(), [](Produs* i){
+        return (i->getType() == "cd");
+    });
+
+    int numVinil = count_if(products.begin(), products.end(), [](Produs* i){
+        return (i->getType() == "vinil");
+    });
+
+    int numVintage = count_if(products.begin(), products.end(), [](Produs* i){
+        return (i->getType() == "vintage");
+    });
+
+    int numClothes = count_if(products.begin(), products.end(), [](Produs* i){
+        return (i->getType() == "vestimentatie");
+    });
+
+    if(numCD < 2 || numVinil < 2 || numVintage < 2 || numClothes < 2){
+        return false;
+    } else {
+        return true;
+    }
+}
