@@ -16,19 +16,21 @@ class Angajat{
     string last_name; //nume, min 3 caractere, max 30
     const string CNP; //trebuie sa fie valid
     const string hire_date;
-    // float salary = 3500; //salariu de baza
+    float salary; //salariu de baza
 
     public:
     Angajat() = default;
     Angajat(const string, string, string, const string, const string);
     virtual void afisare();
     void displayID();
-    virtual float calculateSalary() = 0;
+    virtual void calculateSalary() = 0;
     void validCNP();
     void validHireDate();
     int calculateSeniority();
     const string getID();
-    string getName();
+    string getLastName();
+    string getFirstName();
+    float getSalary();
     string getType();
     void setLastName(const string nume);
 };
