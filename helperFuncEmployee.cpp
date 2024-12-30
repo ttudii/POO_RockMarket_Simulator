@@ -315,7 +315,7 @@ void modifyEmployee(vector <Angajat*> &employees){
             vector <Angajat*>::iterator it;
             for (it = employees.begin(); (*it)->getID() != search_id; it++)
                 ;
-            if((*it)->getName() == new_name){
+            if((*it)->getLastName() == new_name){
                 cout << "The name provided is the same as the current name!" << endl;
                 continue;
             }

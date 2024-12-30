@@ -101,6 +101,7 @@ void processFileOrder(vector <Angajat*> &employees, vector <Produs*> &products, 
         int counter_clothes = 0;
 
         float value = 0;
+        float value_taxed = 0;
         float packing_time = 0;
         cout << "\nAttempting to process order\n" << endl;
         for (int i = 0; i < numRequests; i++){
@@ -109,6 +110,7 @@ void processFileOrder(vector <Angajat*> &employees, vector <Produs*> &products, 
                 for (vector<Produs *>::iterator iter = products.begin(); iter != products.end(); iter++){
                     if (temp.getCode() == (string)(*iter)->getCode()){
                         value += (*iter)->getBasePrice() * temp.getQuantity();
+                        value_taxed += (*iter)->addShipmentTaxes() * temp.getQuantity();
                         if ((*iter)->getType() == "vestimentatie"){
                             counter_clothes += temp.getQuantity();
                             packing_time += 0.25 * temp.getQuantity();
@@ -127,7 +129,7 @@ void processFileOrder(vector <Angajat*> &employees, vector <Produs*> &products, 
 
         if (requests.size() == numRequests){
             if (counter_disk <= 5 && counter_clothes <= 3 && value >= 100){
-                orders.push_back(Comanda(numRequests, requests, value, packing_time));
+                orders.push_back(Comanda(numRequests, requests, value, value_taxed, packing_time));
                 string id = orders.back().getID();
                 Operator *op = (Operator*)findFreeOperator(employees);
                 if(op != nullptr){
@@ -156,7 +158,7 @@ void processFileOrder(vector <Angajat*> &employees, vector <Produs*> &products, 
         }
 
         cout << "==============================================================================================================" << endl;
-        std::this_thread::sleep_for(std::chrono::seconds(2));
+        // std::this_thread::sleep_for(std::chrono::seconds(2));
     }
 }
 

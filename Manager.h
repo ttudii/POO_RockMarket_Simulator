@@ -8,5 +8,5 @@ class Manager : public Angajat{
     Manager() = default;
     Manager(const string, string, string, const string, const string);
     void afisare();
-    float calculateSalary();
+    void calculateSalary();
 };

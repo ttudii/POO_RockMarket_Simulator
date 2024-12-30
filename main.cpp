@@ -1,20 +1,10 @@
 #include "helperFuncEmployee.h"
 #include "helperFuncProduct.h"
 #include "helperFuncOrder.h"
-
-#include <fstream>
+#include "helperFuncReport.h"
 
 //TODO: add possibility to display only one employee/product
-//TODO: add to the salary of the operator 0.5% of the total sales
-//TODO: reset stock after reading from file (optional)
-
-void generateReports(vector <Angajat*> employees, vector <Comanda> orders, ofstream &report1){
-    auto max_numOrd = max_element(employees.begin(), employees.end(), [](Angajat *a, Angajat *b){
-        return ((Operator*)a)->getNumOrders() < ((Operator*)a)->getNumOrders();
-    });
-    report1 << "caca" << ","
-    << ((Operator*)*max_numOrd)->getNumOrders();
-}
+//TODO: check all code and add Modern C++ features
 
 int main(){
 
@@ -22,11 +12,11 @@ int main(){
     vector <Produs*> products;
     vector <Comanda> orders;
 
-    employees.push_back(new Manager("1", "Ion", "Popescu", "5041208460047", "24.12.2024"));
-    employees.push_back(new Operator("2", "Mihai", "Ionescu", "1810915416632", "20.10.2007"));
+    employees.push_back(new Manager("1", "Ion", "Setescu", "1500126130407", "24.12.2002"));
+    employees.push_back(new Operator("2", "Tudor", "Lungescu", "1810915416632", "20.10.2007"));
     employees.push_back(new Operator("3", "Andrei", "Popa", "2731202139069", "20.03.2003"));
-    employees.push_back(new Operator("4", "Maria", "Popescu", "5031002132668", "07.03.2024"));
-    employees.push_back(new Asistent("5", "Ana", "Popescu", "6021202131077", "08.01.2023"));
+    employees.push_back(new Operator("4", "Luca", "Camliescu", "5031002132668", "07.03.2024"));
+    employees.push_back(new Asistent("5", "Ana", "Mancacescu", "6021202131077", "08.01.2023"));
 
     products.push_back(new Disc("cd", "20", "Disc1", 100, 30, "global", "20.10.2010", "Rock", "Pop"));
     products.push_back(new Disc("cd", "21", "Disc2", 100, 40, "global", "20.03.2007", "ceva", "ceva"));
@@ -386,6 +376,7 @@ int main(){
                         if((*it)->getType() == "operator"){
                             ((Operator*)(*it))->getOrders().clear();
                             ((Operator*)(*it))->resetNumOrders();
+                            ((Operator*)(*it))->resetSalary();
                         }
                     }
                     ifstream file("orders.txt");
@@ -456,10 +447,16 @@ int main(){
                 }
 
                 if(response[0] == '1'){
+                    system("cls");
                     ofstream report1("highest_numOrd.csv");
                     ofstream report2("top3_valuableOrd.csv");
                     ofstream report3("top3_highestSalary.csv");
-                    generateReports(employees, orders, report1);
+                    generateReports(employees, orders, report1, report2, report3);
+                    report1.close();
+                    report2.close();
+                    report3.close();
+                    std::this_thread::sleep_for(std::chrono::seconds(4));
+                    cout << "Reports generated!" << endl;
                     cout << "\nPress ENTER to return to the menu...";
                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                     std::cin.get();
@@ -472,4 +469,5 @@ int main(){
             return 0;
         }
     }
+
 }

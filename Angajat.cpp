@@ -40,8 +40,6 @@ void Angajat::afisare(){
     cout << "CNP: " << CNP << endl;
     cout << "Data angajarii: " << hire_date << endl;
 
-    float salary = calculateSalary();
-
     time_t now = time(0);
 
     tm *ltm = localtime(&now);
@@ -60,12 +58,20 @@ const string Angajat::getID(){
     return ID;
 }
 
-string Angajat::getName(){
+string Angajat::getLastName(){
     return last_name;
+}
+
+string Angajat::getFirstName(){
+    return first_name;
 }
 
 string Angajat::getType(){
     return type;
+}
+
+float Angajat::getSalary(){
+    return salary;
 }
 
 void Angajat::setLastName(const string nume){

@@ -2,8 +2,8 @@
 
 int Comanda::numOrders = 0;
 
-Comanda::Comanda(int nbRequests, vector <Request> cereri, float valoare, float timp_impachetare)
-:numRequests(nbRequests), requests(cereri), value(valoare), packing_time(timp_impachetare){
+Comanda::Comanda(int nbRequests, vector <Request> cereri, float valoare, float valoare_cu_taxe, float timp_impachetare)
+:numRequests(nbRequests), requests(cereri), value(valoare), value_taxed(valoare_cu_taxe) , packing_time(timp_impachetare){
     id = "Order" + to_string(numOrders);
     numOrders++;
     time(&date);
@@ -30,6 +30,10 @@ float Comanda::getPackingTime(){
 
 string Comanda::getID(){
     return id;
+}
+
+float Comanda::getValueWithTaxes(){
+    return value_taxed;
 }
 
 float Comanda::getTimeSimulator(){
