@@ -12,3 +12,4 @@ void displayAllCodes(vector <Produs*> &products);
 void addNewProduct(vector <Produs*> &products);
 void modifyProduct(vector <Produs*> &products);
 void deleteProduct(vector <Produs*> &products);
+bool countProducts(vector <Produs*> &products);

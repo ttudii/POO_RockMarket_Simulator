@@ -19,3 +19,4 @@ void addNewEmployee(vector <Angajat*> &employees);
 void displayAllEmployees(vector <Angajat*> &employees);
 void modifyEmployee(vector <Angajat*> &employees);
 void deleteEmployee(vector <Angajat*> &employees);
+bool countEmployees(vector <Angajat*> &employees);
