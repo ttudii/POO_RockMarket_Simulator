@@ -3,7 +3,6 @@
 #include "helperFuncOrder.h"
 #include "helperFuncReport.h"
 
-//TODO: add possibility to display only one employee/product
 //TODO: check all code and add Modern C++ features
 
 int main(){
@@ -181,12 +180,69 @@ int main(){
                         std::this_thread::sleep_for(std::chrono::seconds(4));
                     }
                 } else if(response[0] == '4') {
-                    system("cls");
                     if(employees.size() != 0){
-                        displayAllEmployees(employees);
-                        cout << "Press ENTER to return to the menu...";
-                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                        std::cin.get();
+                        while(true){
+                            system("cls");
+
+                            cout << "Display options" << endl;
+                            cout << endl;
+
+                            cout << "1. Display employee" << endl;
+                            cout << "2. Display all employees" << endl;
+                            cout << "3. Back" << endl;
+                            cout << endl;
+
+                            cout << "Select option: " << endl;
+
+                            while(true){
+                                cin >> response;
+                                cout << endl;
+
+                                if(response[0] != '1' && response[0] != '2' && response[0] != '3') {
+                                    cout << "The option selected doesn't exist in the menu!" << endl;
+                                } else {
+                                    break;
+                                }
+                            }
+
+                            if(response[0] == '1'){
+                                system("cls");
+                                while(true){
+                                    string search_id;
+
+                                    cout << "\nEnter the ID of the employee you want to display: ";
+                                    cin >> search_id;
+                                    cout << endl;
+
+                                    if(!validID(employees, search_id)){
+                                        for(vector <Angajat*>::iterator it = employees.begin(); it != employees.end(); it++){
+                                            if((*it)->getID() == search_id){
+                                                (*it)->afisare();
+                                                cout << endl;
+                                                break;
+                                            }
+                                        }
+                                        cout << "Press ENTER to return to the menu...";
+                                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                                        std::cin.get();
+                                        break;
+                                    } else {
+                                        cout << "The ID entered doesn't exist in the list of employees!" << endl;
+                                        cout << "Here are the IDs of the employees: " << endl;
+                                        displayIDs(employees);
+                                    }
+                                }
+                            } else if(response[0] == '2'){
+                                system("cls");
+                                displayAllEmployees(employees);
+                                cout << "Press ENTER to return to the menu...";
+                                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                                std::cin.get();
+                            } else {
+                                system("cls");
+                                break;
+                            }
+                        }
                     } else {
                         cout << "No employees to display because the store is empty!" << endl;
                         std::this_thread::sleep_for(std::chrono::seconds(4));
@@ -316,12 +372,69 @@ int main(){
                         std::this_thread::sleep_for(std::chrono::seconds(4));
                     }
                 } else if(response[0] == '4') {
-                    system("cls");
                     if(products.size() != 0){
-                        displayAllProducts(products);
-                        cout << "Press ENTER to return to the menu...";
-                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                        std::cin.get();
+                        while(true){
+                            system("cls");
+
+                            cout << "Display options" << endl;
+                            cout << endl;
+
+                            cout << "1. Display product" << endl;
+                            cout << "2. Display all products" << endl;
+                            cout << "3. Back" << endl;
+                            cout << endl;
+
+                            cout << "Select option: " << endl;
+
+                            while(true){
+                                cin >> response;
+                                cout << endl;
+
+                                if(response[0] != '1' && response[0] != '2' && response[0] != '3') {
+                                    cout << "The option selected doesn't exist in the menu!" << endl;
+                                } else {
+                                    break;
+                                }
+                            }
+
+                            if(response[0] == '1'){
+                                system("cls");
+                                while(true){
+                                    string search_code;
+
+                                    cout << "\nEnter the code of the product you want to display: ";
+                                    cin >> search_code;
+                                    cout << endl;
+
+                                    if(!validCode(products, search_code)){
+                                        for(vector <Produs*>::iterator it = products.begin(); it != products.end(); it++){
+                                            if((*it)->getCode() == search_code){
+                                                (*it)->afisare();
+                                                cout << endl; 
+                                                break;
+                                            }
+                                        }
+                                        cout << "Press ENTER to return to the menu...";
+                                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                                        std::cin.get();
+                                        break;
+                                    } else {
+                                        cout << "The code entered doesn't exist in the list of products!" << endl;
+                                        cout << "Here are the IDs of the employees: " << endl;
+                                        displayAllCodes(products);
+                                    }
+                                }
+                            } else if(response[0] == '2'){
+                                system("cls");
+                                displayAllProducts(products);
+                                cout << "Press ENTER to return to the menu...";
+                                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                                std::cin.get();
+                            } else {
+                                system("cls");
+                                break;
+                            }
+                        }
                     } else {
                         cout << "No products to display because the list of products is empty!" << endl;
                         std::this_thread::sleep_for(std::chrono::seconds(4));
