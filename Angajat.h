@@ -24,8 +24,6 @@ class Angajat{
     virtual void afisare();
     void displayID();
     virtual void calculateSalary() = 0;
-    void validCNP();
-    void validHireDate();
     int calculateSeniority();
     const string getID();
     string getLastName();
