@@ -99,7 +99,7 @@ bool validDate(int day, int month, int year) {
     if (year < 1900) return false; 
     if (month < 1 || month > 12) return false;
 
-    int daysInMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    vector <int> daysInMonth {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
     if (isLeapYear(year)) {
         daysInMonth[1] = 29;
@@ -163,8 +163,9 @@ void addNewEmployee(vector <Angajat*> &employees){
         }
     }
 
+    cout<< "Please introduce the first name" << endl;
+
     while(true){
-        cout<< "Please introduce the first name" << endl;
         cin >> first_name;
         first_name[0] = toupper(first_name[0]);
         transform(first_name.begin() + 1, first_name.end(), first_name.begin() + 1, [](char c){
@@ -186,8 +187,9 @@ void addNewEmployee(vector <Angajat*> &employees){
         }
     }
 
+    cout<< "Please introduce the CNP" << endl;
+
     while(true){
-        cout<< "Please introduce the CNP" << endl;
         cin >> CNP;
         cout << endl;
 
@@ -213,8 +215,9 @@ void addNewEmployee(vector <Angajat*> &employees){
         CNPyear += 2000;
     }
 
+    cout << "Please introduce the date of employment" << endl;
+
     while(true){
-        cout << "Please introduce the date of employment" << endl;
         
         cout << "Day: ";
         cin >> day;
@@ -251,8 +254,9 @@ void addNewEmployee(vector <Angajat*> &employees){
         }
     }
 
+    cout << "Please introduce the function of the employee in the company" << endl;
+
     while(true){
-        cout << "Please introduce the function of the employee in the company" << endl;
         cin >> type;
         transform(type.begin(), type.end(), type.begin(), [](char c){
             return tolower(c);

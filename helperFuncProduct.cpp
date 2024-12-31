@@ -11,19 +11,7 @@ bool validCode(vector <Produs*> &products, const string &code){
 
 bool validColour(const string colour){
     
-    vector <string> colours;
-
-    colours.push_back("black");
-    colours.push_back("white");
-    colours.push_back("grey");
-    colours.push_back("red");
-    colours.push_back("orange");
-    colours.push_back("yellow");
-    colours.push_back("blue");
-    colours.push_back("green");
-    colours.push_back("purple");
-    colours.push_back("pink");
-    colours.push_back("brown");
+    vector <string> colours {"black", "white", "grey", "red", "orange", "yellow", "blue", "green", "purple", "pink", "brown"};
 
     for(vector <string>::iterator it = colours.begin(); it != colours.end(); it++){
         if(colour == *it){

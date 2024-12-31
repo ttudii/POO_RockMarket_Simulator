@@ -158,7 +158,7 @@ void processFileOrder(vector <Angajat*> &employees, vector <Produs*> &products, 
         }
 
         cout << "==============================================================================================================" << endl;
-        // std::this_thread::sleep_for(std::chrono::seconds(2));
+        this_thread::sleep_for(chrono::seconds(2));
     }
 }
 
@@ -193,7 +193,7 @@ void addNewOrder(ofstream &file){
     }
 
     if(file << requests){
-        std::this_thread::sleep_for(std::chrono::seconds(4));
+        this_thread::sleep_for(chrono::seconds(4));
         cout << "Your order was processed!" << endl;
     } else {
         cout << "Failed to process order!" << endl;
